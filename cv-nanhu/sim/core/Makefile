@@ -45,7 +45,7 @@ MAKE           = make
 MAKE_DIR       = $(PWD)
 MAKE_PATH     := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 COREV_PROJ     = cv32
-CORE_V_VERIF   = $(abspath $(MAKE_PATH)/../../..)
+YUNLENG   = $(abspath $(MAKE_PATH)/../../..)
 DATE           = $(shell date +%F)
 WAVES          = 0
 
@@ -57,7 +57,7 @@ SIMULATOR     ?= $(CV_SIMULATOR)
 
 # Test-Program directores.
 # Relative path is used for Verilator which cannot seem to handle loooong pathnames.
-TEST_PROGRAM_PATH    = $(CORE_V_VERIF)/$(CV_CORE_LC)/tests/programs/custom
+TEST_PROGRAM_PATH    = $(YUNLENG)/cv-nanhu/tests/programs/custom
 TEST_PROGRAM_RELPATH = ../../tests/programs/custom
 
 # Common output directories
@@ -84,7 +84,7 @@ TEST         ?= hello-world
 #       TEST_TEST_DIR=/home/mike/GitHubRepos/MikeOpenHWGroup/core-v-verif/master/cv32e40p/tests/programs/custom/hello-world
 #       TEST_UVM_TEST=uvmt_$(CV_CORE_LC)_firmware_test_c
 
-YAML2MAKE = $(CORE_V_VERIF)/bin/yaml2make
+YAML2MAKE = $(YUNLENG)/bin/yaml2make
 TEST_FLAGS_MAKE := $(shell $(YAML2MAKE) --test=$(TEST) --yaml=test.yaml  $(YAML2MAKE_DEBUG) --run-index=$(u) --prefix=TEST --core=$(CV_CORE))
 ifeq ($(TEST_FLAGS_MAKE),)
 $(error ERROR Could not find test.yaml for test: $(TEST))
@@ -96,7 +96,7 @@ include $(TEST_FLAGS_MAKE)
 #  -Variables for RTL and other dependencies (e.g. RISCV-DV)
 include ../ExternalRepos.mk
 #  -Core Firmware and the RISCV GCC Toolchain (SDK)
-include $(CORE_V_VERIF)/mk/Common.mk
+include $(YUNLENG)/mk/Common.mk
 
 # vsim configuration
 VVERSION  = "10.7b"
@@ -180,7 +180,7 @@ ASIM_DEBUG_FLAGS  = -dbg
 ASIM_GUI_FLAGS    = -gui
 
 # TB source files for the CV32E core
-TBSRC_HOME  := $(CORE_V_VERIF)/$(CV_CORE_LC)/tb
+TBSRC_HOME  := $(YUNLENG)/$(CV_CORE_LC)/tb
 TBSRC_TOP   := $(TBSRC_HOME)/core/tb_top.sv
 TBSRC_CORE  := $(TBSRC_HOME)/core
 TBSRC_PKG   := $(TBSRC_CORE)/tb_riscv/include/perturbation_defines.sv
@@ -204,11 +204,11 @@ TBSRC_VERI  := $(TBSRC_CORE)/tb_top_verilator.sv \
                $(TBSRC_CORE)/tb_riscv/riscv_gnt_stall.sv \
                $(TBSRC_CORE)/mm_ram.sv \
                $(TBSRC_CORE)/dp_ram.sv
-SIM_LIBS    := $(CORE_V_VERIF)/lib/sim_libs
+SIM_LIBS    := $(YUNLENG)/lib/sim_libs
 
 # RTL source files for the CV32E core
 # DESIGN_RTL_DIR is used by CV_CORE_MANIFEST file
-CV_CORE_PKG           := $(CORE_V_VERIF)/core-v-cores/$(CV_CORE_LC)
+CV_CORE_PKG           := $(YUNLENG)/core-v-cores/$(CV_CORE_LC)
 CV_CORE_RTLSRC_INCDIR := $(CV_CORE_PKG)/rtl/include
 CV_CORE_RTLSRC_PKG    := $(CV_CORE_PKG)/rtl/fpnew/src/fpnew_pkg.sv \
 				$(addprefix $(CV_CORE_RTLSRC_INCDIR)/,\
@@ -682,13 +682,13 @@ clean-sim-results:
 
 # clean up toolchain generated files
 clean-test-programs:
-	find $(CORE_V_VERIF)/$(CV_CORE_LC)/tests/programs -name *.o       -exec rm {} \;
-	find $(CORE_V_VERIF)/$(CV_CORE_LC)/tests/programs -name *.hex     -exec rm {} \;
-	find $(CORE_V_VERIF)/$(CV_CORE_LC)/tests/programs -name *.elf     -exec rm {} \;
-	find $(CORE_V_VERIF)/$(CV_CORE_LC)/tests/programs -name *.map     -exec rm {} \;
-	find $(CORE_V_VERIF)/$(CV_CORE_LC)/tests/programs -name *.readelf -exec rm {} \;
-	find $(CORE_V_VERIF)/$(CV_CORE_LC)/tests/programs -name *.objdump -exec rm {} \;
-	find $(CORE_V_VERIF)/$(CV_CORE_LC)/tests/programs -name corev_*.S -exec rm {} \;
+	find $(YUNLENG)/$(CV_CORE_LC)/tests/programs -name *.o       -exec rm {} \;
+	find $(YUNLENG)/$(CV_CORE_LC)/tests/programs -name *.hex     -exec rm {} \;
+	find $(YUNLENG)/$(CV_CORE_LC)/tests/programs -name *.elf     -exec rm {} \;
+	find $(YUNLENG)/$(CV_CORE_LC)/tests/programs -name *.map     -exec rm {} \;
+	find $(YUNLENG)/$(CV_CORE_LC)/tests/programs -name *.readelf -exec rm {} \;
+	find $(YUNLENG)/$(CV_CORE_LC)/tests/programs -name *.objdump -exec rm {} \;
+	find $(YUNLENG)/$(CV_CORE_LC)/tests/programs -name corev_*.S -exec rm {} \;
 
 .PHONY: clean clean_all distclean
 clean: clean-sim-results clean-test-programs questa-clean verilate-clean vcs-clean firmware-clean dsim-clean xrun-clean vcs-clean riviera-clean
