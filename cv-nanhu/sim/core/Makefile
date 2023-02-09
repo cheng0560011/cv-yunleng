@@ -179,8 +179,8 @@ ALL_ASIM_FLAGS    = $(ASIM_FLAGS)
 ASIM_DEBUG_FLAGS  = -dbg
 ASIM_GUI_FLAGS    = -gui
 
-# TB source files for the CV32E core
-TBSRC_HOME  := $(YUNLENG)/$(CV_CORE_LC)/tb
+# TB source files for the nanhu
+TBSRC_HOME  := $(YUNLENG)/cv-nanhu/tb
 TBSRC_TOP   := $(TBSRC_HOME)/core/tb_top.sv
 TBSRC_CORE  := $(TBSRC_HOME)/core
 TBSRC_PKG   := $(TBSRC_CORE)/tb_riscv/include/perturbation_defines.sv
@@ -208,7 +208,7 @@ SIM_LIBS    := $(YUNLENG)/lib/sim_libs
 
 # RTL source files for the CV32E core
 # DESIGN_RTL_DIR is used by CV_CORE_MANIFEST file
-CV_CORE_PKG           := $(YUNLENG)/core-v-cores/$(CV_CORE_LC)
+CV_CORE_PKG           := $(YUNLENG)/core-v-cores/cv-nanhu
 CV_CORE_RTLSRC_INCDIR := $(CV_CORE_PKG)/rtl/include
 CV_CORE_RTLSRC_PKG    := $(CV_CORE_PKG)/rtl/fpnew/src/fpnew_pkg.sv \
 				$(addprefix $(CV_CORE_RTLSRC_INCDIR)/,\

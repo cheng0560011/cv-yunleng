@@ -13,15 +13,11 @@
 
 export SHELL = /bin/bash
 
-CV_CORE_REPO   ?= https://github.com/openhwgroup/cv32e40p
-CV_CORE_BRANCH ?= master
-CV_CORE_HASH   ?= fcd5968
+CV_CORE_REPO   ?= https://github.com/cheng0560011/cv-nanhu
+CV_CORE_BRANCH ?= nanhu
+CV_CORE_HASH   ?= 6358fde
 CV_CORE_TAG    ?= none
-# The CV_CORE_HASH above points to version of the RTL that is newer, but
-# ilogically equivalent RTL with respect to v1.0.0 RTL freeze version.
-# There are some implementation and testbench updates in the above hash.
-# Set CV_CORE_TAG as below to point to the exact cv32e40p repo as that used at RTL freeze
-#CV_CORE_TAG    ?= cv32e40p_v1.0.0
+# nanhu is a test platform forked from cv32e40p (hash 4cb4ddd)
 
 RISCVDV_REPO    ?= https://github.com/google/riscv-dv
 RISCVDV_BRANCH  ?= master
