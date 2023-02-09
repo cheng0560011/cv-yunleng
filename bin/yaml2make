@@ -54,6 +54,7 @@ TEST_PATHS = (
             '<CV_CORE>/tests/programs/corev-dv/',
             '<CV_CORE>/tests/programs/embench/',
             '<CV_CORE>/tests/programs/custom',
+            'cv-nanhu/tests/programs/custom'
             )
 try:
     DEFAULT_CORE=os.environ['CV_CORE']
