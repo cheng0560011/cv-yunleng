@@ -336,8 +336,8 @@ ASM_DIR   ?= $(ASM)
 #
 # Note that the DSIM targets allow for writing the log-files to arbitrary
 # locations, so all of these paths are absolute, except those used by Verilator.
-CORE_TEST_DIR                        = $(YUNLENG)/$(CV_CORE_LC)/tests/programs
-BSP                                  = $(YUNLENG)/$(CV_CORE_LC)/bsp
+CORE_TEST_DIR                        = $(YUNLENG)/cv-nanhu/tests/programs
+BSP                                  = $(YUNLENG)/cv-nanhu/bsp
 FIRMWARE                             = $(CORE_TEST_DIR)/firmware
 VERI_FIRMWARE                        = ../../tests/core/firmware
 ASM_PROG                            ?= my_hello_world
