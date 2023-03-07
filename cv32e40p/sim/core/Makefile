@@ -530,7 +530,7 @@ vcsify: CV_CORE_pkg tbsrc_pkg tbsrc
 		-timescale=1ns/1ps \
 		-assert svaext \
 		-CC "-I$(VCS_HOME)/include -O3 -march=native" $(VCS_FLAGS) \
-		-f $(MAKE_DIR)/$(CV_CORE_MANIFEST) \
+		-f $(CV_CORE_MANIFEST) \
 		$(TBSRC_PKG) $(TBSRC)
 
 RTLSRC_TB_TOP	:= $(basename $(notdir $(TBSRC_TOP)))
