@@ -121,8 +121,7 @@ VSIM_SCRIPT_DIR	  = ../tools/vsim
 VSIM_SCRIPT       = $(VSIM_SCRIPT_DIR)/vsim.tcl
 
 # vcs configuration (hopelessly out of date)
-VCS_VERSION             = O-2018.09-SP1-1
-VCS_HOME                = /opt/synopsys/vcs-mx/$(VCS_VERSION)
+VCS_HOME               ?= /opt/synopsys/vcs-mx/O-2018.09-SP1-1
 VCS                     = vcs
 VCS_FLAGS              ?= # user defined
 ALL_VCS_FLAGS           = $(VCS_FLAGS)
