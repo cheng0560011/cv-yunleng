@@ -542,8 +542,8 @@ vcs-run-gui: vcsify
 	$(SIMV) $(ALL_VCS_FLAGS) -gui -do $(VCS_SCRIPT_GUI)
 
 .PHONY: vcs-hello-world
-vcs-hello-world: vcsify $(CUSTOM)/hello-world.hex
-vcs-hello-world: ALL_VCS_FLAGS += +firmware=$(CUSTOM)/hello-world.hex
+vcs-hello-world: vcsify $(TEST_PROGRAM_PATH)/hello-world/hello-world.hex
+vcs-hello-world: ALL_VCS_FLAGS += +firmware=$(TEST_PROGRAM_PATH)/hello-world/hello-world.hex
 vcs-hello-world: vcs-run
 
 .PHONY: vcs-custom
