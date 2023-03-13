@@ -536,7 +536,7 @@ vcsify: CV_CORE_pkg tbsrc_pkg tbsrc
 RTLSRC_TB_TOP	:= $(basename $(notdir $(TBSRC_TOP)))
 
 vcs-run: vcsify
-	$(SIMV) $(ALL_VCS_FLAGS) -ucli -do $(VCS_SCRIPT)
+	$(SIMV) $(ALL_VCS_FLAGS)
 
 vcs-run-gui: vcsify
 	$(SIMV) $(ALL_VCS_FLAGS) -gui -do $(VCS_SCRIPT_GUI)
@@ -544,8 +544,7 @@ vcs-run-gui: vcsify
 .PHONY: vcs-hello-world
 vcs-hello-world: vcsify $(TEST_PROGRAM_PATH)/hello-world/hello-world.hex
 vcs-hello-world: ALL_VCS_FLAGS += +firmware=$(TEST_PROGRAM_PATH)/hello-world/hello-world.hex
-vcs-hello-world:
-	$(SIMV) $(ALL_VCS_FLAGS)
+vcs-hello-world: vcs-run
 
 .PHONY: vcs-custom
 vcs-custom: vcsify $(CUSTOM)/$(CUSTOM_PROG).hex
