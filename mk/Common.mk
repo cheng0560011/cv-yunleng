@@ -184,7 +184,7 @@ endif
 ###############################################################################
 # Imperas Instruction Set Simulator
 
-DV_OVPM_HOME    = $(YUNLENG)/vendor_lib/imperas
+DV_OVPM_HOME    = $(CORE_V_VERIF)/vendor_lib/imperas
 DV_OVPM_MODEL   = $(DV_OVPM_HOME)/imperas_DV_COREV
 DV_OVPM_DESIGN  = $(DV_OVPM_HOME)/design
 OVP_MODEL_DPI   = $(DV_OVPM_MODEL)/bin/Linux64/imperas_CV32.dpi.so
@@ -200,7 +200,7 @@ YAML2MAKE_DEBUG =
 endif
 
 # If the gen_corev-dv target is defined then read in a test defintions file
-YAML2MAKE = $(YUNLENG)/bin/yaml2make
+YAML2MAKE = $(CORE_V_VERIF)/bin/yaml2make
 ifneq ($(filter gen_corev-dv,$(MAKECMDGOALS)),)
 ifeq ($(TEST),)
 $(error ERROR must specify a TEST variable with gen_corev-dv target)
@@ -227,7 +227,7 @@ endif
 
 ###############################################################################
 # cfg
-CFGYAML2MAKE = $(YUNLENG)/bin/cfgyaml2make
+CFGYAML2MAKE = $(CORE_V_VERIF)/bin/cfgyaml2make
 CFG_YAML_PARSE_TARGETS=comp ldgen comp_corev-dv gen_corev-dv test hex clean_hex corev-dv sanity-veri-run bsp
 ifneq ($(filter $(CFG_YAML_PARSE_TARGETS),$(MAKECMDGOALS)),)
 ifneq ($(CFG),)
@@ -336,8 +336,8 @@ ASM_DIR   ?= $(ASM)
 #
 # Note that the DSIM targets allow for writing the log-files to arbitrary
 # locations, so all of these paths are absolute, except those used by Verilator.
-CORE_TEST_DIR                        = $(YUNLENG)/cv-nanhu/tests/programs
-BSP                                  = $(YUNLENG)/cv-nanhu/bsp
+CORE_TEST_DIR                        = $(CORE_V_VERIF)/cv-nanhu/tests/programs
+BSP                                  = $(CORE_V_VERIF)/cv-nanhu/bsp
 FIRMWARE                             = $(CORE_TEST_DIR)/firmware
 VERI_FIRMWARE                        = ../../tests/core/firmware
 ASM_PROG                            ?= my_hello_world
@@ -401,11 +401,11 @@ sanity: hello-world
 # Code generators
 # New agent is pulled from moore.io temp site
 new-agent:
-	mkdir -p $(YUNLENG)/temp
-	wget --no-check-certificate -q https://mooreio.com/packages/uvm_gen.tgz -P $(YUNLENG)/temp
-	tar xzf $(YUNLENG)/temp/uvm_gen.tgz -C $(YUNLENG)/temp
-	cd $(YUNLENG)/temp && ./src/new_agent_basic.py $(YUNLENG)/lib/uvm_agents "OpenHW Group"
-	rm -rf $(YUNLENG)/temp
+	mkdir -p $(CORE_V_VERIF)/temp
+	wget --no-check-certificate -q https://mooreio.com/packages/uvm_gen.tgz -P $(CORE_V_VERIF)/temp
+	tar xzf $(CORE_V_VERIF)/temp/uvm_gen.tgz -C $(CORE_V_VERIF)/temp
+	cd $(CORE_V_VERIF)/temp && ./src/new_agent_basic.py $(CORE_V_VERIF)/lib/uvm_agents "OpenHW Group"
+	rm -rf $(CORE_V_VERIF)/temp
 
 
 
@@ -440,7 +440,7 @@ endif
 		-M no-aliases \
 		-M numeric \
         -l \
-		$*.elf | ${YUNLENG}/bin/objdump2itb - > $*.itb
+		$*.elf | ${CORE_V_VERIF}/bin/objdump2itb - > $*.itb
 
 # Patterned targets to generate ELF.  Used only if explicit targets do not match.
 #
