@@ -94,7 +94,7 @@ include $(TEST_FLAGS_MAKE)
 ###############################################################################
 # Common Makefiles:
 #  -Variables for RTL and other dependencies (e.g. RISCV-DV)
-include ../ExternalRepos.mk
+include $(CORE_V_VERIF)/$(CV_CORE_LC)/sim/ExternalRepos.mk
 #  -Core Firmware and the RISCV GCC Toolchain (SDK)
 include $(CORE_V_VERIF)/mk/Common.mk
 
