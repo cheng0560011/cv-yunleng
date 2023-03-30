@@ -56,6 +56,8 @@ case $SIMULATION_TOOL in
 	verilator)
 		make testbench_verilator SIM_RESULTS=$SIM_RESULT_DIR SIM_TEST_RESULTS=$SIM_RESULT_DIR VERI_OBJ_DIR=$VERI_OBJ_DIR 
 	;;
+	vcs)
+		make vcsify -C $SIM_RESULT_DIR -f ../Makefile
 esac
 
 # Build elf with input file
@@ -65,5 +67,8 @@ make $SIM_RESULT_DIR/$USER_PROG_DIR.hex -f $COMMON_MK TEST_TEST_DIR=$USER_PROG_D
 case $SIMULATION_TOOL in
 	verilator)
 		./$SIM_RESULT_DIR/verilator_executable $VERI_FLAGS "+firmware=$SIM_RESULT_DIR/$USER_PROG_DIR.hex" | tee $SIM_RESULT_DIR/${USER_PROG_DIR}_sim.log
+	;;
+	vcs)
+		./$SIM_RESULT_DIR/simv "+firmware=$SIM_RESULT_DIR/$USER_PROG_DIR.hex" | tee $SIM_RESULT_DIR/${USER_PROG_DIR}_sim.log
 	;;
 esac
