@@ -1,6 +1,6 @@
 #!/bin/bash
 
-while getopts "hp:cs?" opt; do
+while getopts "hp:cs:?" opt; do
 	case $opt in
 		h)
 			echo "usage of P200 core-tb execute and simulation script:"
@@ -10,8 +10,12 @@ while getopts "hp:cs?" opt; do
 			echo "-s simulation tool"
 			;;
 		p)
-			echo "user program dir: "
+			echo "user program dir: $OPTARG"
 			USER_PROG_DIR=$OPTARG
+			;;
+		s)
+			echo "use simulation machine as: $OPTARG"
+			SIMULATION_TOOL=$OPTARG
 			;;
 		?)
 			echo "usage: run_coretb.sh -h"
@@ -26,10 +30,16 @@ then
 	exit 0
 fi
 
+if [ "$SIMULATION_TOOL" !=  "verilator" ]
+then
+	echo "Error: do not support simulation tool as $SIMULATION_TOOL"
+	exit 0
+fi
+
 echo "==information=="
 echo "user program dir: $USER_PROG_DIR"
 echo "core/platform: cv32e40p"
-echo "simulation tool: vcs"
+echo "simulation tool: $SIMULATION_TOOL"
 echo "execute after build: yes"
 echo "==information=="
 
